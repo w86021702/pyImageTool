@@ -85,14 +85,14 @@ def output_ios_XCIcon():
 			im.close()
 
 
-#宣传图
 ANDROID_APP_ICON = [
-	["ldpi", 240, 320],
-	["mdpi", 320, 480],
-	["hdpi", 480, 800],
-	["xhdpi", 720, 1280],
-	["xxhdpi", 1090, 1920],
-	["xxxhdpi", 3840, 2160],
+	# ["ldpi", 240, 320],
+	["mdpi", 48, 48],
+	["hdpi", 72, 72],
+	["xhdpi", 96, 96],
+	["xxhdpi", 144, 144],
+	["xxxhdpi", 192, 192],
+	["xc", 512, 512],
 ]
 def output_andriod_AppIcon():
 	filePath = "./src/app_icon.png"
@@ -105,23 +105,31 @@ def output_andriod_AppIcon():
 			os.makedirs(outPutDir)
 
 		out = im.resize((c[1], c[2]), Image.ANTIALIAS)
-		outPath = outPutDir + "/" + fileName + "." + im.format.lower()
+		outPath = outPutDir + "/ic_launcher" + "." + im.format.lower()
 		out.save(outPath, im.format)
 
 	im.close()
 
+ANDROID_APP_BG_ICON = [
+	# ["ldpi", 240, 320],
+	["mdpi", 320, 480],
+	["hdpi", 480, 800],
+	["xhdpi", 720, 1280],
+	["xxhdpi", 1080, 1920],
+	["xxxhdpi", 3840, 2160],
+]
 def output_andriod_BgIcon():
 	filePath = "./src/bg.png"
 	im = Image.open(filePath)
 
-	for c in ANDROID_APP_ICON:
+	for c in ANDROID_APP_BG_ICON:
 		outPutDir = "./output/ANDROID_AppIcon/mipmap-" + c[0]
 		if not os.path.exists(outPutDir):
 			os.makedirs(outPutDir)
 
 		out = im.resize((c[1], c[2]), Image.ANTIALIAS)
 		fileName = os.path.basename(filePath)
-		outPath = outPutDir + "/" + fileName + "." + im.format.lower()
+		outPath = outPutDir + "/launch_image" + "." + im.format.lower()
 		out.save(outPath, im.format)
 
 	im.close()
