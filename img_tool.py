@@ -141,7 +141,11 @@ COMMANDS = {
 }
 
 def showHelpMsg():
-	print("-help")
+	print("-help example")
+
+	for k in COMMANDS:
+		for a in COMMANDS[k]:
+			print(k + "  " + a)
 
 def main():
 	if len(sys.argv) < 3:
